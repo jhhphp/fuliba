@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/jj', function () {
-    return 'hello jhh';
+Route::get('/ruby', function () {
+    return view('app');
+});
+Route::get('/topics', function () {
+    return view('topic');
 });
