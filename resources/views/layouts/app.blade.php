@@ -53,7 +53,7 @@
                 <div id="main-nav-menu">
                     <ul class="nav navbar-nav">
                         <li class=""><a href="{{route('topic')}}">社区</a></li><li class=""><a href="{{route('topic')}}">招聘</a></li><li class=""><a href="{{route('topic')}}">Wiki</a></li><li class=""><a href="{{route('topic')}}">酷站</a></li>
-                        <li class="nav-gems hidden-xs"><a href="https://gems.ruby-china.org" target="_blank" rel="noopener">Gems</a></li>
+                        <li class="nav-gems hidden-xs"><a href="{{route('topic')}}" rel="noopener">Gems</a></li>
 
                     </ul>
                 </div>
