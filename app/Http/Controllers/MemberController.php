@@ -18,4 +18,15 @@ class MemberController extends Controller
         $user = ['name'=> $name];
         return view('member.index',['user'=>$user]);
     }
+
+    public function setting(Request $request, $name='base')
+    {
+        if(!in_array($name,['base','profile','password','reward'])){
+            return view('common.error2');
+        }
+        $params = [
+            'menu'  =>  $name
+        ];
+        return view('setting.'.$name,$params);
+    }
 }
