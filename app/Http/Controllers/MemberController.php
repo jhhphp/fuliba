@@ -21,6 +21,9 @@ class MemberController extends Controller
 
     public function setting(Request $request, $name='base')
     {
+        if(!in_array($name,['base','profile','password','reward'])){
+            return view('common.error2');
+        }
         $params = [
             'menu'  =>  $name
         ];
