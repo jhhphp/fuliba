@@ -78,6 +78,9 @@
         </div>
     </nav>
 </div>
+<!--预留作为通知-->
+<!-- <div class="alert alert-success"><a class="close" data-dismiss="alert" href="#"><i class="fa fa-close"></i></a>这是个通知tips!</div> -->
+<!-- end -->
 
 @section('content')
 @show

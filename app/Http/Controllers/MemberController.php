@@ -18,4 +18,12 @@ class MemberController extends Controller
         $user = ['name'=> $name];
         return view('member.index',['user'=>$user]);
     }
+
+    public function setting(Request $request, $name='base')
+    {
+        $params = [
+            'menu'  =>  $name
+        ];
+        return view('setting.'.$name,$params);
+    }
 }
