@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,11 +50,19 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'required'=>':attribute不能为空',
+            'unique'=>'该:attribute已经被注册',
+            'email'=>'请填写正确的邮箱',
+            'between' => '密码必须是6~20位之间',
+            'confirmed' => '新密码和确认密码不匹配'
+        ];
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'nickname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'password' => 'required|string|between:6,20|confirmed',
+        ],$messages);
     }
 
     /**
@@ -70,8 +80,30 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function reg()
+    public function reg(Request $request)
     {
+        if($request->isMethod('post')){
+            $username = $request->input('username');
+            $nickname = $request->input('nickname');
+            $email = $request->input('email');
+            $email_public = $request->input('email_public',0);
+            $password = $request->input('password');
+            $data = $request->all();
+            $validator = $this->validator($data);
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput($data);
+            }
+            $data = [
+                'username'      =>  $username,
+                'nickname'      =>  $nickname,
+                'email'         =>  $email,
+                'email_public'  =>  $email_public,
+                'password'      => Hash::make($password),
+            ];
+            $user = User::create($data);
+            Auth::login($user);
+            return redirect('/');
+        }
         return view('auth.reg');
     }
 }

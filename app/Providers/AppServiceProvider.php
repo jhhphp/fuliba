@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //如果手机访问，不显示foot
+        $showFoot = true;
+        if(\App\Components\Helper::isMobile())
+            $showFoot = false;
+        view()->share('showFoot',$showFoot);
     }
 
     /**

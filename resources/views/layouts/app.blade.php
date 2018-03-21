@@ -33,7 +33,8 @@
         abbr {  text-decoration: none; }
     </style>
 
-    <script src="{{asset('js/app-476.js')}}" data-turbolinks-track="reload"></script>
+    <script src="{{asset('js/jquery.min.js')}}" ></script>
+    <script src="{{asset('js/app-r.js')}}" ></script>
 
 </head>
 <body class="page-home" data-controller-name="home">
@@ -48,7 +49,7 @@
                 <a href="{{route('/')}}" class="navbar-brand"><b>Ruby</b> China</a>
 
             </div>
-            <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <div class="collapse navbar-collapse nav-collapse-toggle" id="main-navbar-collapse">
 
                 <div id="main-nav-menu">
                     <ul class="nav navbar-nav">
@@ -60,8 +61,30 @@
 
             </div>
             <ul class="nav user-bar navbar-nav navbar-right">
+                @guest
                 <li><a href="{{route('reg')}}">注册</a></li>
                 <li><a href="{{route('login')}}">登录</a></li>
+                @endguest
+                @auth
+                        <li class="dropdown dropdown-avatar">
+                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img class="media-object avatar-32" src="https://ruby-china.org/system/letter_avatars/2/J/82_188_137/64.png"> <span class="caret"></span>
+                            </a>
+                            <button class="navbar-toggle" type="button" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="sr-only">Toggle</span>
+                                <img class="media-object avatar-32" src="https://ruby-china.org/system/letter_avatars/2/J/82_188_137/64.png">
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class=""><a href="/member/{{Auth::user()->username}}">{{Auth::user()->username}}</a></li>
+                                <li class=""><div class="divider"></div></li>
+                                <li class=""><a href="/setting">个人资料设置</a></li>
+                                <li class=""><a href="/topic/favorites">我的收藏</a></li>
+                                <!--<li class=""><a href="/notes">记事本</a></li>-->
+                                <li class=""><div class="divider"></div></li>
+                                <li class=""><a rel="nofollow" data-method="delete" href="/logout">退出</a></li>
+                            </ul>
+                        </li>
+                @endauth
             </ul>
 
             <ul class="nav navbar-nav user-bar navbar-right">
@@ -73,6 +96,17 @@
                         <i class="fa btn-search fa-search"></i>
                     </form>
                 </li>
+                @auth
+                    <li class="notification-count">
+                        <a href="/notice" class="" title="通知"><i class="fa fa-bell"></i><span class="count">0</span></a>
+                    </li>
+                    <li class="newTopic">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-plus"></i> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu"><li class=""><a href="/newTopic">发布新话题</a></li></ul>
+                    </li>
+                @endauth
             </ul>
 
         </div>

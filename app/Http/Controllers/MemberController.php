@@ -10,13 +10,17 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\User;
 
 class MemberController extends Controller
 {
     public function index(Request $request,$name)
     {
-        $user = ['name'=> $name];
-        return view('member.index',['user'=>$user]);
+        $member = User::query()->where('username',$name)->first();
+        if(!$member){
+            return view('common.error2');
+        }
+        return view('member.index',['user'=>$member->toArray()]);
     }
 
     public function setting(Request $request, $name='base')

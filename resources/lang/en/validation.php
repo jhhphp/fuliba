@@ -116,6 +116,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'username'  =>  '用户名',
+        'nickname'  =>  '昵称',
+        'email'  =>  '邮箱',
+        'password'  =>  '密码',
+        'account'  =>  '账号',
+    ],
 
 ];

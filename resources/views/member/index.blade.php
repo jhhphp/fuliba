@@ -12,15 +12,15 @@
                         </div>
                         <div class="media-body">
                             <div class="item">
-                                {{$user['name']}}
+                                {{$user['username']}} ({{$user['nickname']}})
                                 <span class="opts pull-right">
             </span>
                             </div>
                             <div class="item number">
-                                第 31774 位会员 / <span title="注册日期">2017-06-01</span>
+                                第 {{$user['id']}} 位会员 / <span title="注册日期">{{substr($user['created_at'],0,10)}}</span>
                             </div>
                             <div class="item counts">
-                                <span>3</span> 篇帖子 • <span>12</span> 条回帖
+                                <span>0</span> 篇帖子 • <span>0</span> 条回帖
                             </div>
                             <div class="item social">
 
