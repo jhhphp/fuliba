@@ -11,7 +11,6 @@
     <title>{{env('APP_NAME')}}</title>
     <meta name="apple-mobile-web-app-capable" content="no">
     <meta content='True' name='HandheldFriendly' />
-    <link rel="alternate" type="application/rss+xml" title="订阅最新帖" href="https://ruby-china.org/topics/feed" />
     <link rel="stylesheet" media="screen" href="{{asset('css/app-476.css')}}" data-turbolinks-track="reload" />
 
 
@@ -20,9 +19,7 @@
     <meta name="csrf-token" content="l1seBFk9rPRVkhRWP5tKboc7OylcGjr0IAI9IwShA9y/zgwX6dsYHahzO858glrjUQIN3dPvZ+Vk9OrXpHgueg==" />
     <meta name="apple-itunes-app" content="app-id=1072028763" />
     <meta name="google-site-verification" content="YRy3qLejfhrOT_FxPRQn2p5h_ykCLOmhpP3Q5QUWdHU" />
-    <link rel="icon" href="//l.ruby-china.org/photo/2016/c309db0b49cab85a32f756541ea0e2b0.png" />
-    <link rel="mask-icon" href="//l.ruby-china.org/photo/2016/8c03593544987c35a95d5f2e83e86e61.svg!large" />
-    <link rel="apple-touch-icon" href="//l.ruby-china.org/photo/2017/689eac2db74b87236f371e2898580746.png!large" />
+    <link rel="icon" href="/favicon.ico" />
 
     <style>
         body { background: #e5e5e5; }
@@ -46,7 +43,7 @@
                     <span class="sr-only">Toggle</span>
                     <i class="fa fa-reorder"></i>
                 </button>
-                <a href="{{route('/')}}" class="navbar-brand"><b>Ruby</b> China</a>
+                <a href="{{route('/')}}" class="navbar-brand"><b style="font-size:140%">{{env('LOGO_NAME')}}</b>{{env('LOGO_NAME_EXT')}}</a>
 
             </div>
             <div class="collapse navbar-collapse nav-collapse-toggle" id="main-navbar-collapse">

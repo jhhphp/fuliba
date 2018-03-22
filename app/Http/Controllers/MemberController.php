@@ -14,13 +14,15 @@ use App\User;
 
 class MemberController extends Controller
 {
-    public function index(Request $request,$name)
+    public function index(Request $request,$name,$forward="replies")
     {
+        if(!in_array($forward,['replies','article','collection','following','follower']))
+            $forward = 'replies';
         $member = User::query()->where('username',$name)->first();
         if(!$member){
             return view('common.error2');
         }
-        return view('member.index',['user'=>$member->toArray()]);
+        return view('member.'.$forward,['user'=>$member->toArray()]);
     }
 
     public function setting(Request $request, $name='base')
