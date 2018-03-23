@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,8 +62,10 @@ class LoginController extends Controller
             $data = $request->all();
             \Log::info($data);
             if (Auth::attempt(['username' => $account, 'password' => $password], $remember)) {
+                User::where('username',$account)->update(['last_login_ip'=>\App\Components\Helper::get_client_ip(),'last_login_at'=>date('Y-m-d H:i:s')]);
                 return redirect()->intended('/');
             }else if(Auth::attempt(['email' => $account, 'password' => $password], $remember)){
+                User::where('email',$account)->update(['last_login_ip'=>\App\Components\Helper::get_client_ip(),'last_login_at'=>date('Y-m-d H:i:s')]);
                 return redirect()->intended('/');
             }
             return redirect('login')->withInput($data)->with('msg', '账户不存在或者密码错误');

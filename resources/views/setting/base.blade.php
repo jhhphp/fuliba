@@ -3,19 +3,19 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form class="simple_form edit_user" id="edit_user_34612" enctype="multipart/form-data" novalidate="novalidate" action="/setting" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="3KMnVmJWlsLkAjfXJDZd5URcg5hdn6JqJ2Y3ZA81E8poCE7u5AE20Px2drpLPfopE00vYaihzbywCMCtCCokwA==">
-
+                <form class="simple_form edit_user" id="edit_user_34612" enctype="multipart/form-data" novalidate="novalidate" action="/member/update" accept-charset="UTF-8" method="post">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="col-sm-9">
-                            <div class="form-group string optional user_name"><label class="string optional control-label" for="user_name">名字</label><input class="form-control string optional" style="width: 200px" type="text" value="煌灰灰" name="user[name]" id="user_name"></div>
-                            <div class="form-group email optional user_email"><label class="email optional control-label" for="user_email">Email</label><input class="form-control string email optional" disabled="disabled" type="email" value="702242999@qq.com" name="user[email]" id="user_email"><p class="help-block">保存以后就不可以改了哦！</p></div>
+                            <div class="form-group string optional user_name"><label class="string optional control-label" for="user_name">昵称</label><input class="form-control string optional" style="width: 200px" type="text" value="{{Auth::user()->nickname}}" name="base[nickname]" id="user_name"></div>
+                            <div class="form-group email optional user_email"><label class="email optional control-label" for="user_email">Email</label><input class="form-control string email optional" {{empty(Auth::user()->email)? '':'disabled="disabled"'}} type="email" value="{{Auth::user()->email}}" name="base[email]" id="user_email"><p class="help-block">保存以后就不可以改了哦！</p></div>
                             <div class="form-group">
                                 <div class="checkbox">
-                                    <label for="user_email_public" class="checkbox"><input name="user[email_public]" type="hidden" value="0"><input type="checkbox" value="1" name="user[email_public]" id="user_email_public"> 公开 Email</label>
+                                    <label for="user_email_public" class="checkbox"><input name="base[email_public]" type="hidden" value="0"><input type="checkbox" {{Auth::user()->email_public ? 'checked="checked"':''}} value="1" name="base[email_public]" id="user_email_public"> 公开 Email</label>
                                 </div>
                             </div>
-                            <div class="form-group file optional user_avatar"><label class="file optional control-label" for="user_avatar">头像</label><input class="form-control file optional" type="file" name="user[avatar]" id="user_avatar"></div>
-                            <div class="form-group text optional user_bio"><label class="text optional control-label" for="user_bio">个人介绍</label><textarea class="form-control text optional xxlarge" rows="6" name="user[bio]" id="user_bio"></textarea></div>
+                            <div class="form-group file optional user_avatar"><label class="file optional control-label" for="user_avatar">头像</label><input class="form-control file optional" type="file" name="logo" id="user_avatar"></div>
+                            <div class="form-group text optional user_bio"><label class="text optional control-label" for="user_bio">个人介绍</label><textarea class="form-control text optional xxlarge" rows="6" name="base[intro]" id="user_bio"></textarea></div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group avatar-preview" style="text-align: center;">

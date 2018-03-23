@@ -35,4 +35,12 @@ class MemberController extends Controller
         ];
         return view('setting.'.$name,$params);
     }
+
+    public function update(Request $request)
+    {
+        $base = $request->input('base');
+        $profile = $request->input('profile');
+        dd($base,$profile,$request->file('logo'));
+
+    }
 }
