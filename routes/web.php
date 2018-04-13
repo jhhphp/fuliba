@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@home')->name('/');
 Route::get('/ruby', 'HomeController@home')->name('/');
 Route::get('/topic/{type?}','TopicController@topic')->name('topic');
+Route::get('/topicAdd','TopicController@add')->name('topicAdd');
 Route::get('/topic/detail/{id}','TopicController@detail')->name('topic_detail');
 Route::get('/member/{name}/{forward?}','MemberController@index')->name('member');//个人主页
 Route::get('/setting/{name?}','MemberController@setting')->name('profile');//个人信息设置

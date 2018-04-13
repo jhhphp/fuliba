@@ -12,6 +12,7 @@
     <meta name="apple-mobile-web-app-capable" content="no">
     <meta content='True' name='HandheldFriendly' />
     <link rel="stylesheet" media="screen" href="{{asset('css/app-476.css')}}" data-turbolinks-track="reload" />
+    <link rel="stylesheet"  href="{{asset('css/bootstrap.min.css')}}" >
 
 
     <meta name="action-cable-url" content="/cable" />
@@ -31,6 +32,7 @@
     </style>
 
     <script src="{{asset('js/jquery.min.js')}}" ></script>
+    <script src="{{asset('js/bootstrap.min.js')}}" ></script>
     <script src="{{asset('js/app-r.js')}}" ></script>
 
 </head>
@@ -101,7 +103,7 @@
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="fa fa-plus"></i> <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" role="menu"><li class=""><a href="/newTopic">发布新话题</a></li></ul>
+                        <ul class="dropdown-menu" role="menu"><li class=""><a href="{{route('topicAdd')}}">发布新话题</a></li></ul>
                     </li>
                 @endauth
             </ul>

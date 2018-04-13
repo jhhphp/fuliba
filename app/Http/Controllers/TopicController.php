@@ -15,7 +15,6 @@ class TopicController extends Controller
     public function topic (Request $request)
     {
         return view('topics.index');
-
     }
 
     public function detail (Request $request)
@@ -24,4 +23,9 @@ class TopicController extends Controller
 
     }
 
+
+    public function add (Request $request)
+    {
+        return view('topics.add');
+    }
 }
